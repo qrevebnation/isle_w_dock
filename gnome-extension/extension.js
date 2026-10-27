@@ -8,6 +8,7 @@ import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
 import {Controller} from './src/controller.js';
 import {setIconDir} from './src/widgets.js';
+import {Dock} from './src/dock.js';
 
 /** The entry point GNOME Shell loads; everything else hangs off the controller. */
 export default class IsleExtension extends Extension {
@@ -15,10 +16,13 @@ export default class IsleExtension extends Extension {
     enable() {
         setIconDir(this.dir.get_child('icons'));
         this._controller = new Controller(this);
+        this._dock = new Dock(this);
     }
 
-    /** Takes the island down; GNOME also calls this when the screen locks. */
+    /** Takes the island and dock down; GNOME also calls this when the screen locks. */
     disable() {
+        this._dock?.destroy();
+        this._dock = null;
         this._controller?.destroy();
         this._controller = null;
     }

@@ -1015,3 +1015,74 @@
 .isle-recording-pill:focus {
   color: #ffffff;
 }
+
+/* ==========================================================================
+   Isle Bottom Dock Styles
+   ========================================================================== */
+
+.isle-dock-container {
+  margin-bottom: 0px;
+}
+
+.isle-dock {
+  background-color: rgba(16, 16, 20, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  padding: 8px 12px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  spacing: 8px;
+}
+
+.isle-dock-sep {
+  width: 1px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 0 4px;
+}
+
+.isle-dock-item-wrapper {
+  spacing: 2px;
+}
+
+.isle-dock-item {
+  border-radius: 16px;
+  padding: 6px;
+  transition-duration: 180ms;
+}
+
+.isle-dock-item:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.isle-dock-item.launcher {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 44px;
+  height: 44px;
+}
+
+.isle-dock-item.launcher:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+.isle-dock-launcher-icon {
+  font-size: 20px;
+  color: #60a5fa;
+}
+
+.isle-dock-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: transparent;
+  margin-top: 1px;
+}
+
+.isle-dock-dot.active {
+  background-color: #60a5fa;
+  box-shadow: 0 0 6px rgba(96, 165, 250, 0.8);
+}
+
