@@ -40,6 +40,7 @@ export class Dock {
         this._favChangedId = this._settings.connect('changed::favorite-apps', () => this._refresh());
         this._monitorsChangedId = Main.layoutManager.connect('monitors-changed', () => this._updatePosition());
 
+        this._hideDefaultDash();
         this._refresh();
         this._updatePosition();
     }
@@ -145,7 +146,41 @@ export class Dock {
         });
     }
 
+    _hideDefaultDash() {
+        if (Main.overview?.dash) {
+            Main.overview.dash.hide();
+        }
+        if (Main.overview?._overview?.controls?._dash) {
+            Main.overview._overview.controls._dash.hide();
+        }
+
+        this._overviewShowingId = Main.overview?.connect('showing', () => {
+            if (Main.overview?.dash) {
+                Main.overview.dash.hide();
+            }
+            if (Main.overview?._overview?.controls?._dash) {
+                Main.overview._overview.controls._dash.hide();
+            }
+        });
+    }
+
+    _restoreDefaultDash() {
+        if (this._overviewShowingId && Main.overview) {
+            Main.overview.disconnect(this._overviewShowingId);
+            this._overviewShowingId = null;
+        }
+
+        if (Main.overview?.dash) {
+            Main.overview.dash.show();
+        }
+        if (Main.overview?._overview?.controls?._dash) {
+            Main.overview._overview.controls._dash.show();
+        }
+    }
+
     destroy() {
+        this._restoreDefaultDash();
+
         if (this._appChangedId) this._appSystem.disconnect(this._appChangedId);
         if (this._installedChangedId) this._appSystem.disconnect(this._installedChangedId);
         if (this._favChangedId) this._settings.disconnect(this._favChangedId);
